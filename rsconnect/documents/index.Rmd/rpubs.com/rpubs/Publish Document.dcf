@@ -1,7 +1,7 @@
 name: Publish Document
 account: rpubs
 server: rpubs.com
-appId: https://api.rpubs.com/api/v1/document/192255/c7f3e91a958f42c797c37875eba7c8c9
-bundleId: https://api.rpubs.com/api/v1/document/192255/c7f3e91a958f42c797c37875eba7c8c9
-url: http://rpubs.com/publish/claim/192255/7def29a023874849b58ffa3b174e9bfb
-when: 1467003214.50178
+appId: https://api.rpubs.com/api/v1/document/192268/dd295a7a7c924d4ab0b7de062f99c23a
+bundleId: https://api.rpubs.com/api/v1/document/192268/dd295a7a7c924d4ab0b7de062f99c23a
+url: http://rpubs.com/TusharFadale/192268
+when: 1467006961.34453

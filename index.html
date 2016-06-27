@@ -99,10 +99,15 @@
   <article data-timings="">
     <h3>I implemented the previous equations where you can provide the input for the blood glucose level to get estimates of the HbA1c</h3>
 
-<pre><code>## Loading required package: manipulate
-</code></pre>
-
-<pre><code>## Error in manipulate(bg &lt;- seq(from = 50, to = 400, by = 10), a1c &lt;- (bg + : The manipulate package must be run from within RStudio
+<pre><code class="r">require(manipulate)
+library(manipulate)
+manipulate(
+  bg &lt;- seq(from = 50, to = 400, by = 10),
+  a1c &lt;- (bg + 46.7) / 28.7,
+  plot(bg, a1c),
+  abline(h = (reading + 46.7)/28.7),
+  reading = slider(50,400)
+)
 </code></pre>
 
   </article>

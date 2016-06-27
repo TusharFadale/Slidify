@@ -47,7 +47,7 @@ where:
 
 ### I implemented the previous equations where you can provide the input for the blood glucose level to get estimates of the HbA1c
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=TRUE, eval=FALSE}
 require(manipulate)
 library(manipulate)
 manipulate(

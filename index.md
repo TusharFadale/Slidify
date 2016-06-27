@@ -48,12 +48,16 @@ where:
 ### I implemented the previous equations where you can provide the input for the blood glucose level to get estimates of the HbA1c
 
 
-```
-## Loading required package: manipulate
-```
-
-```
-## Error in manipulate(bg <- seq(from = 50, to = 400, by = 10), a1c <- (bg + : The manipulate package must be run from within RStudio
+```r
+require(manipulate)
+library(manipulate)
+manipulate(
+  bg <- seq(from = 50, to = 400, by = 10),
+  a1c <- (bg + 46.7) / 28.7,
+  plot(bg, a1c),
+  abline(h = (reading + 46.7)/28.7),
+  reading = slider(50,400)
+)
 ```
 
 ---
