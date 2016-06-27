@@ -1,0 +1,83 @@
+---
+title       : HbA1c Predictor
+subtitle    : based off blood glucose levels
+author      : Tushar Fadale
+job         : Solution Archictect & Data Scientiest?
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, bootstrap, interactive]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Agenda
+
+### Background & Goal
+Several studies have suggestedthat HbA1C levels may predict incident diabetes. With new recommendations for use of HbA1c in diagnosing diabetes, many patients with HbA1c results below the diagnostic threshold will be identified. Clinicians will need to categorize risk for a subsequent diabetic diagnosis in such patients. Studies have shown that HbA1c has the ability to predict the incidence of a diabetic diagnosis
+
+More informatoin: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3041192/
+
+The goal is to develop a quick and easy way to predict HbA1c based on the blood glucose level as measured by over the counter blood glucose kit. The following charts will focus on the prediction algoithm used to predict the HbA1c, a simple solution and a detailed solution. 
+* Prediction Algorithm
+* Simple Solution
+* Detailed Solution
+
+--- .class #id1 bg:lightblue 
+
+## Prediction Algorithm
+
+There have been a lot of research done in developing prediction algorithm of which I have used developed in the article:
+
+
+### Developing an HbA1c-Based Equation to Estimate Blood Glucose in Maintenance Hemodialysis Patients
+
+#### Junichi Hoshino, MD, MPH, Miklos Z. Molnar, MD, PHD, Kunihiro Yamagata, MD, PHD, Yoshifumi Ubara, MD, PHD, Kenmei Takaichi, MD, PHD, Csaba P. Kovesdy, MD and Kamyar Kalantar-Zadeh, MD, MPH, PHD
+
+More information: http://care.diabetesjournals.org/content/36/4/922
+
+$$ A_1c = \frac{bg + 46.7}{28.7}$$
+
+where:
+* $A_1c$ : Hemoglobin A_1c
+* $bg$ : blood glucose level (substituted with 90 day blood gluclose moving average)
+
+---
+## Simple Solution
+
+### I implemented the previous equations where you can provide the input for the blood glucose level to get estimates of the HbA1c
+
+```{r, echo=FALSE, eval=TRUE}
+require(manipulate)
+library(manipulate)
+manipulate(
+  bg <- seq(from = 50, to = 400, by = 10),
+  a1c <- (bg + 46.7) / 28.7,
+  plot(bg, a1c),
+  abline(h = (reading + 46.7)/28.7),
+  reading = slider(50,400)
+)
+
+```
+
+---
+
+## Detailed Solution
+
+I have implemented a more detail solution available at the following link:
+
+### https://tushar-fadale.shinyapps.io/A1CPredictorApp/
+
+Features Implemented:
+
+* for Algorithm
+ + Add more than one blood glucose reading
+ + Use as much observation saved with interpolation for missing data
+ + Predict the future & past HbA1c
+ + Allow multile daily entries by averating daily data
+* for User Interface
+ + Auto saving of all entered data and allow for daily updates
+ + Table and Plot views of all saved data
+ + Clear data to start again or Delete incorrect entries
+
+
